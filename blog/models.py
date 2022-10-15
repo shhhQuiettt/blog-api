@@ -18,7 +18,7 @@ class Author(models.Model):
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=24)
+    name = models.CharField(max_length=24, unique=True)
 
 
 class Post(models.Model):
