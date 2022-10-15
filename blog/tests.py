@@ -17,7 +17,9 @@ class PostModelCreatrionTest(TestCase):
 
         # Tags
         tag1 = Tag(name="Health")
+        tag1.save()
         tag2 = Tag(name="Revolution")
+        tag2.save()
 
         # Post
         title = "Why you shouldn't drink water"
@@ -44,7 +46,9 @@ class PostModelUtilityTest(TestCase):
 
         # Tags
         tag1 = Tag(name="Health")
+        tag1.save()
         tag2 = Tag(name="Revolution")
+        tag2.save()
 
         # Post
         title = "Why you shouldn't drink water"
@@ -60,5 +64,5 @@ class PostModelUtilityTest(TestCase):
         self.assertTrue(self.post.is_published)
 
     def test_is_published_is_false_when_publish_at_in_the_future(self):
-        self.post.publish_at = timezone.now() - timedelta(days=10)
+        self.post.publish_at = timezone.now() + timedelta(days=10)
         self.assertFalse(self.post.is_published)

@@ -27,11 +27,11 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     publish_at = models.DateTimeField()
     author = models.ForeignKey(Author, on_delete=models.RESTRICT)
-    tag = models.ManyToManyField(Tag, blank=True, null=True)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     @property
     def is_published(self):
-        return self.published_at < timezone.now()
+        return self.publish_at < timezone.now()
 
     def __str__(self):
         return f"Blog ({self.title[:16]}{'...' if len(self.title) > 16 else ''})"
